@@ -25,7 +25,7 @@ public class UrlSigner {
     private String consumerSecret;
 
     public String signUrl(String originalUrl) throws UrlSigningException {
-        log.info("Input url : {} " + originalUrl);
+        log.info("Input url : {} ", originalUrl);
         OAuthConsumer consumer = new DefaultOAuthConsumer(consumerKey, consumerSecret);
         consumer.setSigningStrategy(new QueryStringSigningStrategy());
         try {
