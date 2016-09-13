@@ -17,11 +17,13 @@ import java.util.Map;
 public class UserController {
 
     @GetMapping("assignment")
-    public boolean subscriptionAddOns(@RequestParam Map<String, String> allRequestParams) {
+    public boolean userAssignment(@RequestParam Map<String, String> allRequestParams) {
         allRequestParams.forEach((key, val) -> log.info("Key is : {} and value is : {}", key, val));
         return true;
-    } @GetMapping("unassignment")
-    public boolean subscriptionAddOns(@RequestParam Map<String, String> allRequestParams) {
+    }
+
+    @GetMapping("unassignment")
+    public boolean userUnassignment(@RequestParam Map<String, String> allRequestParams) {
         allRequestParams.forEach((key, val) -> log.info("Key is : {} and value is : {}", key, val));
         return true;
     }
