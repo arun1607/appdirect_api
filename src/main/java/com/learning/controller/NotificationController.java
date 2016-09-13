@@ -1,6 +1,5 @@
 package com.learning.controller;
 
-import com.learning.exception.UrlSigningException;
 import com.learning.rest.ResponseDataLoader;
 import com.learning.security.UrlSigner;
 import lombok.extern.log4j.Log4j2;
@@ -27,7 +26,7 @@ public class NotificationController {
     private ResponseDataLoader responseDataLoader;
 
     @GetMapping("create")
-    public boolean subscriptionCreate(@RequestParam("url") String eventUrl) throws UrlSigningException {
+    public boolean subscriptionCreate(@RequestParam("url") String eventUrl) throws Exception {
         String signedUrl = urlSigner.signUrl(eventUrl);
         log.info("Signed url is {} ", signedUrl);
         responseDataLoader.fetchResponse(signedUrl);
