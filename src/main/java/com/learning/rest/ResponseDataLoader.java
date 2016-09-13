@@ -26,7 +26,8 @@ public class ResponseDataLoader {
 
         try {
             HttpGet httpget = new HttpGet(url);
-
+            httpget.setHeader("Accept", "application/json");
+            httpget.setHeader("Content-type", "application/json");
             System.out.println("Executing request " + httpget.getRequestLine());
 
             // Create a custom response handler
