@@ -10,7 +10,11 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.springframework.stereotype.Component;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 import java.io.IOException;
+import java.io.StringReader;
 
 /**
  * Created by amits on 13/09/16.
@@ -20,7 +24,7 @@ import java.io.IOException;
 public class ResponseDataLoader {
 
 
-    public void fetchResponse(String url) throws IOException {
+    public void fetchResponse(String url) throws IOException, JAXBException {
 
         CloseableHttpClient httpclient = HttpClients.createDefault();
 
@@ -41,7 +45,10 @@ public class ResponseDataLoader {
                 }
             };
             String responseBody = httpclient.execute(httpget, responseHandler);
-            log.info("Response is : {}", responseBody);
+            JAXBContext jaxbContext = JAXBContext.newInstance(Response.class);
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            Response response = (Response) jaxbUnmarshaller.unmarshal(new StringReader(responseBody));
+            log.info("Response is : {}", response);
         } finally {
             httpclient.close();
         }
