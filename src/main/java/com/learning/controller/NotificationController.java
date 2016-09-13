@@ -39,4 +39,10 @@ public class NotificationController {
         allRequestParams.forEach((key, val) -> log.info("Key is : {} and value is : {}", key, val));
         return true;
     }
+
+    @GetMapping("addons")
+    public boolean subscriptionAddOns(@RequestParam Map<String, String> allRequestParams) {
+        allRequestParams.forEach((key, val) -> log.info("Key is : {} and value is : {}", key, val));
+        return true;
+    }
 }
