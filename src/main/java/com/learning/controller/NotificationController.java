@@ -17,7 +17,25 @@ import java.util.Map;
 public class NotificationController {
 
     @GetMapping("create")
-    public boolean createSubscription(@RequestParam Map<String, String> allRequestParams) {
+    public boolean subscriptionCreate(@RequestParam Map<String, String> allRequestParams) {
+        allRequestParams.forEach((key, val) -> log.info("Key is : {} and value is : {}", key, val));
+        return true;
+    }
+
+    @GetMapping("update")
+    public boolean subscriptionUpdate(@RequestParam Map<String, String> allRequestParams) {
+        allRequestParams.forEach((key, val) -> log.info("Key is : {} and value is : {}", key, val));
+        return true;
+    }
+
+    @GetMapping("cancel")
+    public boolean subscriptionCancel(@RequestParam Map<String, String> allRequestParams) {
+        allRequestParams.forEach((key, val) -> log.info("Key is : {} and value is : {}", key, val));
+        return true;
+    }
+
+    @GetMapping("status")
+    public boolean subscriptionStatus(@RequestParam Map<String, String> allRequestParams) {
         allRequestParams.forEach((key, val) -> log.info("Key is : {} and value is : {}", key, val));
         return true;
     }
