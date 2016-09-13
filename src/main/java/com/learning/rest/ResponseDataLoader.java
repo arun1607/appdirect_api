@@ -45,6 +45,7 @@ public class ResponseDataLoader {
                 }
             };
             String responseBody = httpclient.execute(httpget, responseHandler);
+            log.info("Response body is {}", responseBody);
             JAXBContext jaxbContext = JAXBContext.newInstance(Response.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
             Response response = (Response) jaxbUnmarshaller.unmarshal(new StringReader(responseBody));
