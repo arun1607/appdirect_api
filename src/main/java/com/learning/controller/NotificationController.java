@@ -29,7 +29,9 @@ public class NotificationController {
     @GetMapping("create")
     public boolean subscriptionCreate(@RequestParam("url") String eventUrl) throws UrlSigningException {
         String signedUrl = urlSigner.signUrl(eventUrl);
+        log.info("Signed url is {} ", signedUrl);
         responseDataLoader.fetchResponse(signedUrl);
+
         return true;
     }
 
