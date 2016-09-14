@@ -34,7 +34,7 @@ public class Response {
     @JsonProperty("marketplace")
     private Marketplace marketplace;
     @JsonProperty("applicationUuid")
-    private Object applicationUuid;
+    private String applicationUuid;
     @JsonProperty("flag")
     private String flag;
     @JsonProperty("creator")

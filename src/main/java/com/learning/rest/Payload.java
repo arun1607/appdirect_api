@@ -33,7 +33,7 @@ public class Payload {
     @JsonProperty("account")
     private Account account;
     @JsonProperty("addonInstance")
-    private String addonInstance;
+    private AddonInstance addonInstance;
     @JsonProperty("addonBinding")
     private String addonBinding;
     @JsonProperty("order")
