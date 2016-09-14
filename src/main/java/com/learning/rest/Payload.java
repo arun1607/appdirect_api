@@ -35,11 +35,11 @@ public class Payload {
     @JsonProperty("addonInstance")
     private AddonInstance addonInstance;
     @JsonProperty("addonBinding")
-    private String addonBinding;
+    private AddonBinding addonBinding;
     @JsonProperty("order")
     private Order order;
     @JsonProperty("notice")
-    private String notice;
+    private Notice notice;
     @JsonProperty("configuration")
     private Configuration configuration;
 }
