@@ -1,8 +1,6 @@
 package com.learning.controller;
 
-import com.learning.exception.UrlSigningException;
-import com.learning.rest.ResponseDataLoader;
-import com.learning.security.UrlSigner;
+import com.learning.service.SubscriptionService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,48 +8,40 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.xml.bind.JAXBException;
-import java.io.IOException;
-
 /**
  * Created by amits on 12/09/16.
  */
 @RestController
 @RequestMapping("subscription")
 @Log4j2
-public class NotificationController extends BaseController{
+public class NotificationController{
 
+
+    @Autowired
+    private SubscriptionService subscriptionService;
 
     @GetMapping("create")
     public boolean subscriptionCreate(@RequestParam("url") String eventUrl) throws Exception {
-        loadEventData(eventUrl);
+        subscriptionService.create(eventUrl);
         return true;
     }
 
 
     @GetMapping("update")
     public boolean subscriptionUpdate(@RequestParam("url") String eventUrl) throws Exception {
-        loadEventData(eventUrl);
+        subscriptionService.update(eventUrl);
         return true;
     }
 
     @GetMapping("cancel")
     public boolean subscriptionCancel(@RequestParam("url") String eventUrl) throws Exception {
-        loadEventData(eventUrl);
+        subscriptionService.cancel(eventUrl);
         return true;
     }
 
     @GetMapping("status")
     public boolean subscriptionStatus(@RequestParam("url") String eventUrl) throws Exception {
-        loadEventData(eventUrl);
+        subscriptionService.status(eventUrl);
         return true;
     }
-
-    @GetMapping("addons")
-    public boolean subscriptionAddOns(@RequestParam("url") String eventUrl) throws Exception {
-        loadEventData(eventUrl);
-        return true;
-    }
-
-
 }
