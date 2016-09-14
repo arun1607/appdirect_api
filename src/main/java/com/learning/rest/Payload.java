@@ -27,7 +27,7 @@ import lombok.ToString;
 public class Payload {
 
     @JsonProperty("user")
-    private String user;
+    private SubscriptionUser user;
     @JsonProperty("company")
     private Company company;
     @JsonProperty("account")
