@@ -28,7 +28,7 @@ public class Company {
     @JsonProperty("uuid")
     private String uuid;
     @JsonProperty("externalId")
-    private Object externalId;
+    private String externalId;
     @JsonProperty("name")
     private String name;
     @JsonProperty("email")

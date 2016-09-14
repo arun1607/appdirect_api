@@ -15,12 +15,15 @@ import lombok.ToString;
 @ToString
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "domain"
+        "domain","name"
 })
 public class Configuration {
 
     @JsonProperty("domain")
     private String domain;
+
+    @JsonProperty("name")
+    private String name;
 
 
 }

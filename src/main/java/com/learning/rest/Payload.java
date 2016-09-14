@@ -27,19 +27,19 @@ import lombok.ToString;
 public class Payload {
 
     @JsonProperty("user")
-    private Object user;
+    private String user;
     @JsonProperty("company")
     private Company company;
     @JsonProperty("account")
-    private Object account;
+    private Account account;
     @JsonProperty("addonInstance")
-    private Object addonInstance;
+    private String addonInstance;
     @JsonProperty("addonBinding")
-    private Object addonBinding;
+    private String addonBinding;
     @JsonProperty("order")
     private Order order;
     @JsonProperty("notice")
-    private Object notice;
+    private String notice;
     @JsonProperty("configuration")
     private Configuration configuration;
 }

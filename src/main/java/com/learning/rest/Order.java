@@ -30,7 +30,7 @@ public class Order {
     @JsonProperty("addonOfferingCode")
     private Object addonOfferingCode;
     @JsonProperty("pricingDuration")
-    private String pricingDuration;
+    private PricingDuration pricingDuration;
     @JsonProperty("items")
     private List<Item> items = new ArrayList<Item>();
 }
