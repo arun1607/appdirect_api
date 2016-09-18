@@ -23,7 +23,7 @@ public class GlobalExceptionHandler {
         return Response.failure(ResponseErrorCode.UNKNOWN_ERROR, "Internal system error occurred");
     }
 
-    @ExceptionHandler({AddonHandlingException.class, DataExistsException.class, DataNotFoundException.class, , EventDataHandlingException.class,
+    @ExceptionHandler({AddonHandlingException.class, DataExistsException.class, DataNotFoundException.class, EventDataHandlingException.class,
             InvalidPayloadDataException.class, PayloadDataParsingException.class, SubscriptionHandlingException.class, UrlSigningException.class,
             UserHandlingException.class})
     @ResponseStatus(HttpStatus.OK)
