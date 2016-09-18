@@ -59,7 +59,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
     @Override
     public User findByOpenId(String openId) {
         String userOpenId = Utils.extractOpenId(openId);
-        com.learning.entity.User existingUser = userRepository.findByOpenId(userOpenId);
+        User existingUser = userRepository.findByOpenId(userOpenId);
         if (Objects.isNull(existingUser)) {
             throw new DataNotFoundException(String.format("User does not exists with openid %s", openId));
         }

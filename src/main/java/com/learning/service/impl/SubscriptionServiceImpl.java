@@ -82,6 +82,7 @@ public class SubscriptionServiceImpl extends AbstractService implements Subscrip
     }
 
     @Override
+    @Transactional
     public Response cancel(String eventUrl) {
         EventWrapper eventWrapper = loadEventData(eventUrl);
         User creator = eventWrapper.getCreator();
@@ -94,13 +95,10 @@ public class SubscriptionServiceImpl extends AbstractService implements Subscrip
     }
 
     @Override
+    @Transactional
     public Response status(String eventUrl) {
         EventWrapper eventWrapper = loadEventData(eventUrl);
-        User creator = eventWrapper.getCreator();
-        User user = userService.findByOpenId(creator.getOpenId());
-        Account account = user.getAccount();
-        Account newAccount = eventWrapper.getPayload().getAccount();
         accountService.update(eventWrapper);
-        return  Response.success(account.getAccountIdentifier());
+        return Response.success(eventWrapper.getPayload().getAccount().getAccountIdentifier());
     }
 }
