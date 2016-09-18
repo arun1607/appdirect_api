@@ -42,29 +42,30 @@ public class SubscriptionServiceImpl extends AbstractService implements Subscrip
 
         EventWrapper eventWrapper = loadEventData(eventUrl);
 
-        com.learning.rest.User subscribingUser = eventWrapper.getSubscribingUser();
-
-        Marketplace marketplace = marketplaceService.createMarketplace(eventWrapper.getMarketplace());
-        Order orderEntity = orderService.createOrder(eventWrapper.getPayload().getOrder());
-        Account accountEntity = accountService.createNewAccount();
-        Company companyEntity = companyService.createCompany(eventWrapper.getPayload().getCompany());
-        User userEntity = userService.createUser(subscribingUser);
-        userEntity.setAccount(accountEntity);
-
-
-        Event event = new Event();
-        event.setCompany(companyEntity);
-        event.setSubscriptionUser(userEntity);
-        event.setMarketplace(marketplace);
-        event.setApplicationUuid(eventWrapper.getApplicationUuid());
-        event.setCompany(eventWrapper.getPayload().getCompany());
-        event.setFlag(eventWrapper.getFlag());
-        event.setConfigurations(eventWrapper.getPayload().getConfiguration());
-        event.setOrder(orderEntity);
-
-        eventRepository.save(event);
-
-        return Response.success(accountEntity.getAccountIdentifier());
+//        com.learning.rest.User subscribingUser = eventWrapper.getSubscribingUser();
+//
+//        Marketplace marketplace = marketplaceService.createMarketplace(eventWrapper.getMarketplace());
+//        Order orderEntity = orderService.createOrder(eventWrapper.getPayload().getOrder());
+//        Account accountEntity = accountService.createNewAccount();
+//        Company companyEntity = companyService.createCompany(eventWrapper.getPayload().getCompany());
+//        User userEntity = userService.createUser(subscribingUser);
+//        userEntity.setAccount(accountEntity);
+//
+//
+//        Event event = new Event();
+//        event.setCompany(companyEntity);
+//        event.setSubscriptionUser(userEntity);
+//        event.setMarketplace(marketplace);
+//        event.setApplicationUuid(eventWrapper.getApplicationUuid());
+//        event.setCompany(eventWrapper.getPayload().getCompany());
+//        event.setFlag(eventWrapper.getFlag());
+//        event.setConfigurations(eventWrapper.getPayload().getConfiguration());
+//        event.setOrder(orderEntity);
+//
+//        eventRepository.save(event);
+//
+//        return Response.success(accountEntity.getAccountIdentifier());
+        return Response.success("abc");
     }
 
     @Override

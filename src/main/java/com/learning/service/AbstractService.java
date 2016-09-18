@@ -27,9 +27,10 @@ public abstract class AbstractService {
             String signedUrl = urlSigner.signUrl(eventUrl);
             String responseBody = eventDataService.fetchResponseBody(signedUrl);
             log.info("Response body is {}", responseBody);
-            EventWrapper eventWrapper = objectMapper.readValue(responseBody, EventWrapper.class);
-            log.info("Received event data : {}", eventWrapper);
-            return eventWrapper;
+//            EventWrapper eventWrapper = objectMapper.readValue(responseBody, EventWrapper.class);
+//            log.info("Received event data : {}", eventWrapper);
+//            return eventWrapper;
+            return new EventWrapper();
         } catch (IOException e) {
             throw new EventDataHandlingException("Error occurred in handling event for event url : " + eventUrl, e);
         }
