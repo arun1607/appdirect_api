@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -23,6 +24,7 @@ import javax.persistence.Table;
         "quantity"
 })
 @Table(name = "order_item")
+@Entity
 public class Item extends BaseEntity {
 
     @JsonProperty("unit")
