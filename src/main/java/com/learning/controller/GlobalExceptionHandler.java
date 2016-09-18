@@ -25,12 +25,16 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(DataExistsException.class)
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
     public Response handleDataExistsException(DataExistsException ex) {
         log.error("Data already exists", ex);
         return Response.failure(ResponseErrorCode.USER_ALREADY_EXISTS, ex.getMessage());
     }
 
     @ExceptionHandler(EventDataHandlingException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
     public Response handleJsonParsingException(Exception ex) {
         log.error("Error occurred in parsing json", ex);
         return Response.failure(ResponseErrorCode.INVALID_RESPONSE, ex.getMessage());

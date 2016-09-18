@@ -2,7 +2,6 @@ package com.learning.service.impl;
 
 import com.learning.controller.Response;
 import com.learning.entity.*;
-import com.learning.exception.SubscriptionHandlingException;
 import com.learning.repository.EventRepository;
 import com.learning.rest.EventWrapper;
 import com.learning.service.*;
@@ -78,19 +77,19 @@ public class SubscriptionServiceImpl extends AbstractService implements Subscrip
     }
 
     @Override
-    public Response update(String eventUrl) throws SubscriptionHandlingException {
+    public Response update(String eventUrl) {
         EventWrapper eventWrapper = loadEventData(eventUrl);
         return null;
     }
 
     @Override
-    public Response cancel(String eventUrl) throws SubscriptionHandlingException {
+    public Response cancel(String eventUrl) {
         EventWrapper eventWrapper = loadEventData(eventUrl);
         return null;
     }
 
     @Override
-    public Response status(String eventUrl) throws SubscriptionHandlingException {
+    public Response status(String eventUrl) {
         EventWrapper eventWrapper = loadEventData(eventUrl);
         return null;
     }

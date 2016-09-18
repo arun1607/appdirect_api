@@ -10,9 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 public interface SubscriptionService {
     Response create(String eventUrl);
 
-    Response update(String eventUrl) throws SubscriptionHandlingException;
+    Response update(String eventUrl) ;
 
-    Response cancel(String eventUrl) throws SubscriptionHandlingException;
+    Response cancel(String eventUrl) ;
 
-    Response status(String eventUrl) throws SubscriptionHandlingException;
+    Response status(String eventUrl) ;
 }

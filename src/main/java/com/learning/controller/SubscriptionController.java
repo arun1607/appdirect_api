@@ -23,7 +23,7 @@ public class SubscriptionController extends BaseController {
     private SubscriptionService subscriptionService;
 
     @GetMapping("create")
-    public Response subscriptionCreate(@RequestParam("url") String eventUrl) throws Exception {
+    public Response subscriptionCreate(@RequestParam("url") String eventUrl) {
         Response response = validateRequestParams(eventUrl);
         if (Objects.isNull(response)) {
             response = subscriptionService.create(eventUrl);
@@ -33,7 +33,7 @@ public class SubscriptionController extends BaseController {
 
 
     @GetMapping("update")
-    public Response subscriptionUpdate(@RequestParam("url") String eventUrl) throws Exception {
+    public Response subscriptionUpdate(@RequestParam("url") String eventUrl) {
         Response response = validateRequestParams(eventUrl);
         if (Objects.isNull(response)) {
             response = subscriptionService.update(eventUrl);
@@ -42,7 +42,7 @@ public class SubscriptionController extends BaseController {
     }
 
     @GetMapping("cancel")
-    public Response subscriptionCancel(@RequestParam("url") String eventUrl) throws Exception {
+    public Response subscriptionCancel(@RequestParam("url") String eventUrl) {
         Response response = validateRequestParams(eventUrl);
         if (Objects.isNull(response)) {
             response = subscriptionService.cancel(eventUrl);
@@ -51,7 +51,7 @@ public class SubscriptionController extends BaseController {
     }
 
     @GetMapping("status")
-    public Response subscriptionStatus(@RequestParam("url") String eventUrl) throws Exception {
+    public Response subscriptionStatus(@RequestParam("url") String eventUrl) {
         Response response = validateRequestParams(eventUrl);
         if (Objects.isNull(response)) {
             response = subscriptionService.status(eventUrl);

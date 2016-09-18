@@ -13,7 +13,7 @@ public class SubscriptionFlowTest extends BaseIntegrationTest {
     public void testSubscriptionOrder() throws Exception {
         String requestParam = "http://localhost:" + port + "/test?event_type=subscription_order";
         ResponseEntity<RestResponse> responseEntity = restTemplate.getForEntity("/subscription/create?url=" + requestParam, RestResponse.class);
-        Assert.notNull(responseEntity.getBody().getAccountIdentifier());
+        Assert.notNull(responseEntity.getBody());
     }
 
 

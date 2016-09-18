@@ -15,7 +15,7 @@ import java.util.UUID;
  */
 
 
-
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Getter
 @Setter
 @Entity
