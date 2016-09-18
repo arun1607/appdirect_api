@@ -1,0 +1,39 @@
+{
+  "type": "ADDON_CHANGE",
+  "marketplace": {
+    "baseUrl": "https://acme.appdirect.com",
+    "partner": "ACME"
+  },
+  "flag": "STATELESS",
+  "creator": {
+    "email": "test-email+creator@appdirect.com",
+    "firstName": "DummyCreatorFirst",
+    "language": "fr",
+    "lastName": "DummyCreatorLast",
+    "openId": "https://www.appdirect.com/openid/id/ec5d8eda-5cec-444d-9e30-125b6e4b67e2",
+    "uuid": "ec5d8eda-5cec-444d-9e30-125b6e4b67e2"
+  },
+  "payload": {
+    "account": {
+      "accountIdentifier": "dummy-account",
+      "status": "ACTIVE"
+    },
+    "addonInstance": {
+      "id": "dummy-addoninstance"
+    },
+    "configuration": {
+      "entry": {
+        "key": "name",
+        "value": "sample-addon"
+      }
+    },
+    "order": {
+      "addonOfferingCode": "type:vendor:plan",
+      "pricingDuration": "MONTHLY",
+      "item": {
+        "quantity": "20",
+        "unit": "UNIT"
+      }
+    }
+  }
+}

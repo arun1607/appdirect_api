@@ -1,0 +1,43 @@
+{
+  "type": "USER_UPDATED",
+  "marketplace": {
+    "baseUrl": "https://www.acme.com",
+    "partner": "APPDIRECT"
+  },
+  "payload": {
+    "account": {
+      "accountIdentifier": "0f51cc24-8e2f-4d85-924a-5f92cdaed7e8",
+      "status": "ACTIVE"
+    },
+    "configuration": {
+      "entry": [
+        {
+          "key": "externalAccountId",
+          "value": "abc123"
+        },
+        {
+          "key": "ptn",
+          "value": "+522221234567"
+        }
+      ]
+    },
+    "user": {
+      "address": {
+        "city": "San Jose",
+        "country": "US",
+        "firstName": "Another",
+        "fullName": "Another User",
+        "lastName": "User",
+        "state": "CA",
+        "street1": "1 Main St",
+        "zip": "95131"
+      },
+      "email": "exampleUser@testcp.com",
+      "firstName": "Example",
+      "language": "en",
+      "lastName": "User",
+      "openId": "https://www.acme.com/openid/id/a8793a1a-a015-4675-9cc4-dcbadeef1074",
+      "uuid": "a8793a1a-a015-4675-9cc4-dcbadeef1074"
+    }
+  }
+}

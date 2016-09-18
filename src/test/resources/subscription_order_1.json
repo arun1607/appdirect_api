@@ -1,0 +1,39 @@
+{
+  "type": "SUBSCRIPTION_ORDER",
+  "marketplace": {
+    "baseUrl": "https://www.acme.com",
+    "partner": "APPDIRECT"
+  },
+  "creator": {
+    "address": {
+      "city": "Cambridge",
+      "country": "US",
+      "phone": "8582312882",
+      "state": "MA",
+      "street1": "123 Main St",
+      "zip": "02142"
+    },
+    "email": "testuser@testco.com",
+    "firstName": "Test",
+    "language": "en",
+    "lastName": "User",
+    "openId": "https://www.acme.com/openid/id/5d1f6f79-efff-411e-abe5-0b0a01610f04",
+    "uuid": "5d1f6f79-efff-411e-abe6-0b0a01610f04"
+  },
+  "payload": {
+    "company": {
+      "country": "US",
+      "name": "Test User",
+      "phoneNumber": "8582312882",
+      "uuid": "dc61a736-55b6-40fc-9b5a-6b17cbe6eb62"
+    },
+    "order": {
+      "editionCode": "0D5C06DB-FFEC-43a1-A6AF-EFB7E9B17905",
+      "pricingDuration": "MONTHLY",
+      "item": {
+        "quantity": "3",
+        "unit": "USER"
+      }
+    }
+  }
+}

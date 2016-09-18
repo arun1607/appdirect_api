@@ -1,0 +1,29 @@
+{
+  "type": "USER_ASSIGNMENT",
+  "marketplace": {
+    "baseUrl": "https://www.acme.com",
+    "partner": "APPDIRECT"
+  },
+  "creator": {
+    "email": "387a2e29-1dec-4ed0-b945-c9b4cf52381c",
+    "firstName": "Another",
+    "language": "en",
+    "lastName": "User",
+    "openId": "https://www.acme.com/openid/id/b358dac2-da0c-40f2-a187-f7a34f183163",
+    "uuid": "b358dac2-da0c-40f2-a187-f7a34f183163"
+  },
+  "payload": {
+    "account": {
+      "accountIdentifier": "202827",
+      "status": "ACTIVE"
+    },
+    "user": {
+      "email": "387a2e29-1dec-4ed0-b945-c9b4cf52381c",
+      "firstName": "Another",
+      "language": "en",
+      "lastName": "User",
+      "openId": "https://www.acme.com/openid/id/b358dac2-da0c-40f2-a187-f7a34f183163",
+      "uuid": "b358dac2-da0c-40f2-a187-f7a34f183163"
+    }
+  }
+}

@@ -21,8 +21,7 @@ public class EventDataService {
     @Autowired
     private CloseableHttpClient client;
 
-    public String fetchResponseBody(String url) throws IOException {
-
+    String fetchResponseBody(String url) throws IOException {
 
         HttpGet httpget = new HttpGet(url);
         httpget.setHeader("Accept", "application/json");

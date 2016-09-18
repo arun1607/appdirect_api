@@ -3,7 +3,7 @@ package com.learning.exception;
 /**
  * Created by amits on 13/09/16.
  */
-public class UrlSigningException extends Exception {
+public class UrlSigningException extends RuntimeException {
     public UrlSigningException(String message, Throwable cause) {
         super(message, cause);
     }
