@@ -1,5 +1,6 @@
 package com.learning.service.impl;
 
+import com.learning.controller.ResponseErrorCode;
 import com.learning.entity.Address;
 import com.learning.entity.User;
 import com.learning.entity.UserType;
@@ -48,7 +49,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
         String openId = Utils.extractOpenId(user.getOpenId());
         User existingUser = userRepository.findByOpenId(openId);
         if (Objects.nonNull(existingUser)) {
-            throw new DataExistsException(String.format("User exists with openid %s", openId));
+            throw new DataExistsException(ResponseErrorCode.USER_ALREADY_EXISTS, String.format("User exists with openid %s", openId));
         }
         existingUser = copyProperties(user);
         User userEntity = userRepository.save(existingUser);
@@ -61,7 +62,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
         String userOpenId = Utils.extractOpenId(openId);
         User existingUser = userRepository.findByOpenId(userOpenId);
         if (Objects.isNull(existingUser)) {
-            throw new DataNotFoundException(String.format("User does not exists with openid %s", openId));
+            throw new DataNotFoundException(ResponseErrorCode.USER_NOT_FOUND, String.format("User does not exists with openid %s", openId));
         }
         return existingUser;
     }

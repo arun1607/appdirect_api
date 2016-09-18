@@ -1,5 +1,6 @@
 package com.learning.service.impl;
 
+import com.learning.controller.ResponseErrorCode;
 import com.learning.entity.Account;
 import com.learning.entity.AccountStatus;
 import com.learning.entity.User;
@@ -33,7 +34,7 @@ public class AccountServiceImpl extends AbstractService implements AccountServic
         log.info("Creating Account ");
         Payload payload = eventWrapper.getPayload();
         if (Objects.isNull(payload)) {
-            throw new InvalidPayloadDataException("Payload can not be null");
+            throw new InvalidPayloadDataException(ResponseErrorCode.INVALID_RESPONSE, "Payload can not be null");
         }
         Account account = payload.getAccount();
         if (Objects.isNull(account)) {
@@ -72,12 +73,12 @@ public class AccountServiceImpl extends AbstractService implements AccountServic
         log.info("Updating Account ");
         Payload payload = eventWrapper.getPayload();
         if (Objects.isNull(payload)) {
-            throw new InvalidPayloadDataException("Payload can not be null");
+            throw new InvalidPayloadDataException(ResponseErrorCode.INVALID_RESPONSE, "Payload can not be null");
         }
         Account account = payload.getAccount();
         List<Account> existingAccount = accountRepository.findByAccountIdentifier(account.getAccountIdentifier());
         if (Objects.isNull(existingAccount) || existingAccount.isEmpty())
-            throw new DataNotFoundException("No account is found with id " + account.getAccountIdentifier());
+            throw new DataNotFoundException(ResponseErrorCode.ACCOUNT_NOT_FOUND, "No account is found with id " + account.getAccountIdentifier());
         existingAccount.get(0).setStatus(account.getStatus());
     }
 }

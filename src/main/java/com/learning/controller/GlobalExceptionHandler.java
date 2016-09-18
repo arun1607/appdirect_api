@@ -1,7 +1,6 @@
 package com.learning.controller;
 
-import com.learning.exception.DataExistsException;
-import com.learning.exception.EventDataHandlingException;
+import com.learning.exception.*;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.dao.DataAccessException;
@@ -21,29 +20,17 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(DataAccessException.class)
     public Response handleSQLException(DataAccessException ex) {
         log.error("Database error occurred", ex);
-        Response response = Response.failure(ResponseErrorCode.UNKNOWN_ERROR, "Internal system error occurred");
-        log.info("Sending response {}", response);
-        return response;
+        return Response.failure(ResponseErrorCode.UNKNOWN_ERROR, "Internal system error occurred");
     }
 
-    @ExceptionHandler(DataExistsException.class)
+    @ExceptionHandler({AddonHandlingException.class, DataExistsException.class, DataNotFoundException.class, , EventDataHandlingException.class,
+            InvalidPayloadDataException.class, PayloadDataParsingException.class, SubscriptionHandlingException.class, UrlSigningException.class,
+            UserHandlingException.class})
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public Response handleDataExistsException(DataExistsException ex) {
-        log.error("Data already exists", ex);
-        Response response = Response.failure(ResponseErrorCode.USER_ALREADY_EXISTS, ex.getMessage());
-        log.info("Sending response {}", response);
-        return response;
-    }
-
-    @ExceptionHandler(EventDataHandlingException.class)
-    @ResponseBody
-    @ResponseStatus(HttpStatus.OK)
-    public Response handleJsonParsingException(Exception ex) {
-        log.error("Error occurred in parsing json", ex);
-        Response response = Response.failure(ResponseErrorCode.INVALID_RESPONSE, ex.getMessage());
-        log.info("Sending response {}", response);
-        return response;
+        log.error("Error occurred", ex);
+        return Response.failure(ex.getResponseErrorCode(), ex.getMessage());
     }
 
 
@@ -52,9 +39,7 @@ public class GlobalExceptionHandler {
     @ResponseBody
     public Response illegalArgumentExceptionHandler(IllegalArgumentException exception) {
         log.error("Wrong arguments passed to exception", exception);
-        Response response = Response.failure(ResponseErrorCode.INVALID_REQUEST, exception.getMessage());
-        log.info("Sending response {}", response);
-        return response;
+        return Response.failure(ResponseErrorCode.INVALID_REQUEST, exception.getMessage());
     }
 
 
@@ -63,9 +48,7 @@ public class GlobalExceptionHandler {
     @ResponseBody
     public Response typeMismatchException(TypeMismatchException exception) {
         log.error("Error occurred in matching request arguments", exception);
-        Response response = Response.failure(ResponseErrorCode.INVALID_REQUEST, exception.getMessage());
-        log.info("Sending response {}", response);
-        return response;
+        return Response.failure(ResponseErrorCode.INVALID_REQUEST, exception.getMessage());
     }
 
 
@@ -74,9 +57,7 @@ public class GlobalExceptionHandler {
     @ResponseBody
     public Response httpRequestMethodNotSupportedExceptionHandler(HttpRequestMethodNotSupportedException exception) {
         log.error("Invalid method mapping", exception);
-        Response response = Response.failure(ResponseErrorCode.INVALID_RESPONSE, exception.getMessage());
-        log.info("Sending response {}", response);
-        return response;
+        return Response.failure(ResponseErrorCode.INVALID_RESPONSE, exception.getMessage());
     }
 
 }

@@ -1,5 +1,6 @@
 package com.learning.utils;
 
+import com.learning.controller.ResponseErrorCode;
 import com.learning.exception.UrlSigningException;
 import lombok.extern.log4j.Log4j2;
 import oauth.signpost.OAuthConsumer;
@@ -31,7 +32,7 @@ public class UrlSigner {
         try {
             return consumer.sign(originalUrl);
         } catch (OAuthMessageSignerException | OAuthExpectationFailedException | OAuthCommunicationException e) {
-            throw new UrlSigningException("Problem occurred in signing", e);
+            throw new UrlSigningException(ResponseErrorCode.UNKNOWN_ERROR, "Problem occurred in signing", e);
         }
     }
 }

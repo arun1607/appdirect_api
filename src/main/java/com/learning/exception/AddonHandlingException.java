@@ -1,14 +1,13 @@
 package com.learning.exception;
 
+import com.learning.controller.ResponseErrorCode;
+
 /**
  * Created by amits on 13/09/16.
  */
-public class AddonHandlingException extends Exception {
-    public AddonHandlingException(String message, Throwable cause) {
-        super(message, cause);
-    }
+public class AddonHandlingException extends BaseException {
 
-    public AddonHandlingException(Throwable cause) {
-        super(cause);
+    public AddonHandlingException(ResponseErrorCode responseErrorCode, String message) {
+        super(responseErrorCode, message);
     }
 }

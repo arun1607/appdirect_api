@@ -1,5 +1,6 @@
 package com.learning.service.impl;
 
+import com.learning.controller.ResponseErrorCode;
 import com.learning.entity.Marketplace;
 import com.learning.exception.InvalidPayloadDataException;
 import com.learning.repository.MarketplaceRepository;
@@ -29,7 +30,7 @@ public class MarketplaceServiceImpl extends AbstractService implements Marketpla
         log.info("Creating marketplace ");
         Marketplace marketplace = eventWrapper.getMarketplace();
         if (Objects.isNull(marketplace)) {
-            throw new InvalidPayloadDataException("Marketplace data ins missing");
+            throw new InvalidPayloadDataException(ResponseErrorCode.INVALID_RESPONSE,"Marketplace data ins missing");
         }
         List<Marketplace> existingMarketplaceList = marketplaceRepository.findByPartner(marketplace.getPartner());
         if (Objects.isNull(existingMarketplaceList) || existingMarketplaceList.isEmpty()) {

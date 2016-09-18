@@ -1,6 +1,7 @@
 package com.learning.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.learning.controller.ResponseErrorCode;
 import com.learning.exception.EventDataHandlingException;
 import com.learning.rest.EventWrapper;
 import com.learning.utils.UrlSigner;
@@ -31,7 +32,7 @@ public abstract class AbstractService {
             log.info("Received event data : {}", eventWrapper);
             return eventWrapper;
         } catch (IOException e) {
-            throw new EventDataHandlingException("Error occurred in handling event for event url : " + eventUrl, e);
+            throw new EventDataHandlingException(ResponseErrorCode.INVALID_RESPONSE, "Error occurred in handling event for event url : " + eventUrl, e);
         }
     }
 }

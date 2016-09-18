@@ -1,5 +1,6 @@
 package com.learning.service.impl;
 
+import com.learning.controller.ResponseErrorCode;
 import com.learning.entity.Order;
 import com.learning.exception.InvalidPayloadDataException;
 import com.learning.repository.OrderRepository;
@@ -28,11 +29,11 @@ public class OrderServiceImpl extends AbstractService implements OrderService {
         log.info("Creating Order ");
         Payload payload = eventWrapper.getPayload();
         if (Objects.isNull(payload)) {
-            throw new InvalidPayloadDataException("Payload can not be null");
+            throw new InvalidPayloadDataException(ResponseErrorCode.INVALID_RESPONSE,"Payload can not be null");
         }
         Order order = payload.getOrder();
         if (Objects.isNull(order)) {
-            throw new InvalidPayloadDataException("Order can not be null");
+            throw new InvalidPayloadDataException(ResponseErrorCode.INVALID_RESPONSE,"Order can not be null");
         }
         order = orderRepository.save(order);
         payload.setOrder(order);

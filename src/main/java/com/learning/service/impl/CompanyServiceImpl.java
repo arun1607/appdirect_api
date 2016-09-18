@@ -1,5 +1,6 @@
 package com.learning.service.impl;
 
+import com.learning.controller.ResponseErrorCode;
 import com.learning.entity.Company;
 import com.learning.exception.InvalidPayloadDataException;
 import com.learning.repository.CompanyRepository;
@@ -29,11 +30,11 @@ public class CompanyServiceImpl extends AbstractService implements CompanyServic
         log.info("Creating Company ");
         Payload payload = eventWrapper.getPayload();
         if (Objects.isNull(payload)) {
-            throw new InvalidPayloadDataException("Payload can not be null");
+            throw new InvalidPayloadDataException(ResponseErrorCode.INVALID_RESPONSE, "Payload can not be null");
         }
         Company company = payload.getCompany();
         if (Objects.isNull(company)) {
-            throw new InvalidPayloadDataException("Company can not be null");
+            throw new InvalidPayloadDataException(ResponseErrorCode.INVALID_RESPONSE, "Company can not be null");
         }
         Company existingCompany = companyRepository.findByUuid(company.getUuid());
         if (Objects.isNull(existingCompany)) {

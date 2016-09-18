@@ -1,5 +1,6 @@
 package com.learning.service.impl;
 
+import com.learning.controller.ResponseErrorCode;
 import com.learning.entity.Event;
 import com.learning.entity.User;
 import com.learning.exception.InvalidPayloadDataException;
@@ -29,7 +30,7 @@ public class EventServiceImpl implements EventService {
         User user = eventWrapper.getCreator();
         Payload payload = eventWrapper.getPayload();
         if (Objects.isNull(payload)) {
-            throw new InvalidPayloadDataException("Payload can not be null");
+            throw new InvalidPayloadDataException(ResponseErrorCode.INVALID_RESPONSE, "Payload can not be null");
         }
         log.info("Creating event ");
         Event event = new Event();
