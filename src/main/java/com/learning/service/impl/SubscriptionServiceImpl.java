@@ -43,19 +43,25 @@ public class SubscriptionServiceImpl extends AbstractService implements Subscrip
         EventWrapper eventWrapper = loadEventData(eventUrl);
 
         User creator = eventWrapper.getCreator();
-
-        Marketplace marketplace = marketplaceService.createMarketplace(eventWrapper.getMarketplace());
+        Marketplace marketplaceObj = eventWrapper.getMarketplace();
+        log.info("Creating marketplace ");
+        Marketplace marketplace = marketplaceService.createMarketplace(marketplaceObj);
+        log.info("Creating Order ");
         Order orderEntity = orderService.createOrder(eventWrapper.getPayload().getOrder());
+        log.info("Creating Account ");
         Account accountEntity = accountService.createNewAccount();
+
+        log.info("Creating Companty ");
         Company companyEntity = companyService.createCompany(eventWrapper.getPayload().getCompany());
 
         Subscription subscription = new Subscription();
         creator.getUserSubscriptions().add(subscription);
+        log.info("Creating user ");
         User userEntity = userService.createUser(creator);
         subscription.setUser(userEntity);
         userEntity.setAccount(accountEntity);
 
-
+        log.info("Creating event ");
         Event event = new Event();
         event.setCompany(companyEntity);
         event.setSubscriptionUser(userEntity);
@@ -67,7 +73,7 @@ public class SubscriptionServiceImpl extends AbstractService implements Subscrip
         event.setOrder(orderEntity);
 
         eventRepository.save(event);
-
+        log.info("Created account with account identifier {}", accountEntity.getAccountIdentifier());
         return Response.success(accountEntity.getAccountIdentifier());
     }
 
