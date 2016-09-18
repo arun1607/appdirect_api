@@ -1,14 +1,29 @@
 {
   "type": "SUBSCRIPTION_NOTICE",
   "marketplace": {
-    "baseUrl": "https://www.acme.com",
-    "partner": "APPDIRECT"
+    "partner": "ACME",
+    "baseUrl": "https://acme.appdirect.com"
   },
+  "applicationUuid": null,
+  "flag": "STATELESS",
+  "creator": null,
   "payload": {
+    "user": null,
+    "company": null,
     "account": {
-      "accountIdentifier": "a3f72246-5377-4d92-8bdc-b1b6b450c55c",
-      "status": "ACTIVE"
+      "accountIdentifier": "dummy-account",
+      "status": "SUSPENDED",
+      "parentAccountIdentifier": null
     },
-    "notice": { "type": "UPCOMING_INVOICE" }
-  }
+    "addonInstance": null,
+    "addonBinding": null,
+    "order": null,
+    "notice": {
+      "type": "DEACTIVATED",
+      "message": null
+    },
+    "configuration": {}
+  },
+  "returnUrl": null,
+  "links": []
 }

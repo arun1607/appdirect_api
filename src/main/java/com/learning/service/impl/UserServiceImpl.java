@@ -1,10 +1,10 @@
 package com.learning.service.impl;
 
 import com.learning.entity.Address;
+import com.learning.entity.User;
 import com.learning.exception.DataExistsException;
 import com.learning.exception.UserHandlingException;
 import com.learning.repository.UserRepository;
-import com.learning.rest.User;
 import com.learning.service.AbstractService;
 import com.learning.service.UserService;
 import com.learning.utils.Utils;
@@ -62,14 +62,17 @@ public class UserServiceImpl extends AbstractService implements UserService {
         com.learning.entity.User userEntity = new com.learning.entity.User();
         userEntity.setLastName(user.getLastName());
         Address address = user.getAddress();
-        userEntity.setAddress(address);
+        if (Objects.nonNull(address)) {
+            userEntity.setAddress(address);
+            address.setUser(userEntity);
+        }
         userEntity.setEmail(user.getEmail());
         userEntity.setFirstName(user.getFirstName());
         userEntity.setLanguage(user.getLanguage());
         userEntity.setLastName(user.getLastName());
         userEntity.setOpenId(Utils.extractOpenId(user.getOpenId()));
         userEntity.setUuid(user.getUuid());
-        address.setUser(userEntity);
+
         return userEntity;
     }
 }

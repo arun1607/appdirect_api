@@ -1,6 +1,6 @@
 package com.learning.service;
 
-import com.learning.rest.User;
+import com.learning.entity.User;
 
 /**
  * Created by amits on 17/09/16.

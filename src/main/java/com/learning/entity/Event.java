@@ -1,11 +1,9 @@
 package com.learning.entity;
 
-import com.learning.rest.EventType;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 
 /**
  * Created by amits on 15/09/16.
@@ -45,10 +43,15 @@ public class Event extends BaseEntity {
     @JoinColumn(name = "notice_id")
     private Notice notice;
 
-    @OneToMany(mappedBy = "event",cascade = CascadeType.ALL)
-    private List<Configuration> configurations;
+    @OneToOne(mappedBy = "event", cascade = CascadeType.ALL)
+    private Configuration configuration;
 
     @OneToOne
     @JoinColumn(name = "order_id")
     private Order order;
+
+    @Embedded
+    private AddonBinding addonBinding;
+    @Embedded
+    private AddonInstance addonInstance;
 }

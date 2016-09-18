@@ -15,19 +15,10 @@ import java.util.UUID;
 /**
  * Created by amits on 15/09/16.
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Getter
 @Setter
 @ToString
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-        "uuid",
-        "externalId",
-        "name",
-        "email",
-        "phoneNumber",
-        "website",
-        "country"
-})
 @Entity
 @Table(name = "app_event_company")
 public class Company extends BaseEntity {

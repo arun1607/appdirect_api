@@ -1,4 +1,4 @@
-package com.learning.rest;
+package com.learning.entity;
 
 /**
  * Created by amits on 14/09/16.

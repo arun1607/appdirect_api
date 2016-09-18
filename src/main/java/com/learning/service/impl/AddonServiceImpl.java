@@ -52,7 +52,7 @@ public class AddonServiceImpl extends AbstractService implements AddonService {
     public void bind(String eventUrl) {
         EventWrapper eventWrapper = loadEventData(eventUrl);
 
-        com.learning.rest.User subscribingUser = eventWrapper.getSubscribingUser();
+        User subscribingUser = eventWrapper.getCreator();
         Marketplace marketplace = marketplaceService.createMarketplace(eventWrapper.getMarketplace());
         User user = userService.findByOpenId(subscribingUser.getOpenId());
 

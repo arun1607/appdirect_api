@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by amits on 14/09/16.
@@ -25,7 +26,7 @@ public class MarketplaceServiceImpl extends AbstractService implements Marketpla
     public Marketplace createMarketplace(Marketplace marketplace) {
         List<Marketplace> existingMarketplaceList = marketplaceRepository.findByPartner(marketplace.getPartner());
         Marketplace marketplaceEntity;
-        if (existingMarketplaceList.isEmpty()) {
+        if (Objects.isNull(existingMarketplaceList) || existingMarketplaceList.isEmpty()) {
             marketplaceEntity = marketplaceRepository.save(marketplace);
         } else {
             marketplaceEntity = existingMarketplaceList.get(0);

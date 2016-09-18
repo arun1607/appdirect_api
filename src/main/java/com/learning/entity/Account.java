@@ -15,23 +15,15 @@ import java.util.UUID;
  */
 
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-        "accountIdentifier",
-        "status",
-        "parentAccountIdentifier"
-})
+
 @Getter
 @Setter
 @Entity
 @Table(name = "app_account")
 public class Account extends BaseEntity {
-    @JsonProperty("accountIdentifier")
     private String accountIdentifier;
-    @JsonProperty("status")
     @Enumerated(EnumType.STRING)
     private AccountStatus status;
-    @JsonProperty("parentAccountIdentifier")
     private String parentAccountIdentifier;
 
     @PrePersist

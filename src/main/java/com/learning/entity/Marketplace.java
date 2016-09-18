@@ -16,18 +16,11 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @ToString
-
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-        "partner",
-        "baseUrl"
-})
 @Entity
 @Table(name = "app_marketplace")
 public class Marketplace extends BaseEntity {
 
-    @JsonProperty("partner")
-    private String partner = "APPDIRECT";
-    @JsonProperty("baseUrl")
+    private String partner;
     private String baseUrl;
 }

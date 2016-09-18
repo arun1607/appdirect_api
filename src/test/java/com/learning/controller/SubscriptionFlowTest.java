@@ -10,24 +10,11 @@ import org.springframework.util.Assert;
 public class SubscriptionFlowTest extends BaseIntegrationTest {
 
     @Test
-    public void testSubscriptionOrder1() throws Exception {
-        String requestParam = "http://localhost:" + port + "/test?event_type=subscription_order_1";
+    public void testSubscriptionOrder() throws Exception {
+        String requestParam = "http://localhost:" + port + "/test?event_type=subscription_order";
         ResponseEntity<RestResponse> responseEntity = restTemplate.getForEntity("/subscription/create?url=" + requestParam, RestResponse.class);
         Assert.notNull(responseEntity.getBody().getAccountIdentifier());
     }
 
-    @Test
-    public void testSubscriptionOrder2() throws Exception {
-        String requestParam = "http://localhost:" + port + "/test?event_type=subscription_order_2";
-        ResponseEntity<RestResponse> responseEntity = restTemplate.getForEntity("/subscription/create?url=" + requestParam, RestResponse.class);
-        Assert.notNull(responseEntity.getBody().getAccountIdentifier());
-    }
-
-    @Test
-    public void testSubscriptionOrder3() throws Exception {
-        String requestParam = "http://localhost:" + port + "/test?event_type=subscription_order_3";
-        ResponseEntity<RestResponse> responseEntity = restTemplate.getForEntity("/subscription/create?url=" + requestParam, RestResponse.class);
-        Assert.notNull(responseEntity.getBody().getAccountIdentifier());
-    }
 
 }

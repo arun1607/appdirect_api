@@ -1,5 +1,5 @@
 {
-  "type": "ADDON_CHANGE",
+  "type": "SUBSCRIPTION_ORDER",
   "marketplace": {
     "partner": "ACME",
     "baseUrl": "https://acme.appdirect.com"
@@ -18,32 +18,38 @@
   },
   "payload": {
     "user": null,
-    "company": null,
-    "account": {
-      "accountIdentifier": "dummy-account",
-      "status": "ACTIVE",
-      "parentAccountIdentifier": null
+    "company": {
+      "uuid": "d15bb36e-5fb5-11e0-8c3c-00262d2cda03",
+      "externalId": null,
+      "name": "Example Company Name",
+      "email": "company-email@example.com",
+      "phoneNumber": "415-555-1212",
+      "website": "http://www.example.com",
+      "country": "CA"
     },
-    "addonInstance": {
-      "id": "dummy-addoninstance"
-    },
+    "account": null,
+    "addonInstance": null,
     "addonBinding": null,
     "order": {
-      "editionCode": null,
-      "addonOfferingCode": "type:vendor:plan",
+      "editionCode": "BASIC",
+      "addonOfferingCode": null,
       "pricingDuration": "MONTHLY",
       "items": [
         {
-          "unit": "UNIT",
-          "quantity": 20
+          "unit": "USER",
+          "quantity": 10
+        },
+        {
+          "unit": "MEGABYTE",
+          "quantity": 15
         }
       ]
     },
     "notice": null,
     "configuration": {
-      "name": "sample-addon"
+      "domain": "mydomain"
     }
   },
-  "returnUrl": null,
+  "returnUrl": "https://www.appdirect.com/finishprocure?token=dummyOrder",
   "links": []
 }
