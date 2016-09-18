@@ -1,6 +1,8 @@
 package com.learning.service;
 
 import com.learning.entity.User;
+import com.learning.entity.UserType;
+import com.learning.rest.EventWrapper;
 
 /**
  * Created by amits on 17/09/16.
@@ -10,7 +12,8 @@ public interface UserService {
 
     void unassignment(String eventUrl);
 
-    com.learning.entity.User createUser(User user);
 
-    com.learning.entity.User findByOpenId(String openId);
+    User findByOpenId(String openId);
+
+    User createUser(EventWrapper eventWrapper, UserType creator);
 }

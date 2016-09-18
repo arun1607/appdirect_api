@@ -24,7 +24,6 @@ public class Response {
     }
 
     private Response(String accountIdentifier, boolean success) {
-
         this.accountIdentifier = accountIdentifier;
         this.success = success;
     }

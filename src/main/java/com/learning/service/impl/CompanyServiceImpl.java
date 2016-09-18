@@ -1,7 +1,10 @@
 package com.learning.service.impl;
 
 import com.learning.entity.Company;
+import com.learning.exception.InvalidPayloadDataException;
 import com.learning.repository.CompanyRepository;
+import com.learning.rest.EventWrapper;
+import com.learning.rest.Payload;
 import com.learning.service.AbstractService;
 import com.learning.service.CompanyService;
 import lombok.extern.log4j.Log4j2;
@@ -19,6 +22,26 @@ import java.util.Objects;
 public class CompanyServiceImpl extends AbstractService implements CompanyService {
     @Autowired
     private CompanyRepository companyRepository;
+
+    @Override
+    @Transactional
+    public Company createCompany(EventWrapper eventWrapper) {
+        log.info("Creating Company ");
+        Payload payload = eventWrapper.getPayload();
+        if (Objects.isNull(payload)) {
+            throw new InvalidPayloadDataException("Payload can not be null");
+        }
+        Company company = payload.getCompany();
+        if (Objects.isNull(company)) {
+            throw new InvalidPayloadDataException("Company can not be null");
+        }
+        Company existingCompany = companyRepository.findByUuid(company.getUuid());
+        if (Objects.isNull(existingCompany)) {
+            existingCompany = companyRepository.save(company);
+        }
+        payload.setCompany(existingCompany);
+        return existingCompany;
+    }
 
     @Transactional
     @Override

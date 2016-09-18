@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Created by amits on 14/09/16.
  */
@@ -34,44 +36,34 @@ public class SubscriptionServiceImpl extends AbstractService implements Subscrip
 
     @Autowired
     private CompanyService companyService;
+    @Autowired
+    private EventService eventService;
 
     @Transactional
     @Override
     public Response create(String eventUrl) {
 
         EventWrapper eventWrapper = loadEventData(eventUrl);
+        User user = userService.createUser(eventWrapper, UserType.CREATOR);
 
-        User creator = eventWrapper.getCreator();
-        Marketplace marketplaceObj = eventWrapper.getMarketplace();
-        log.info("Creating marketplace ");
-        Marketplace marketplace = marketplaceService.createMarketplace(marketplaceObj);
-        log.info("Creating Order ");
-        Order orderEntity = orderService.createOrder(eventWrapper.getPayload().getOrder());
-        log.info("Creating Account ");
-        Account accountEntity = accountService.createNewAccount();
+        marketplaceService.createMarketplace(eventWrapper);
 
-        log.info("Creating Companty ");
-        Company companyEntity = companyService.createCompany(eventWrapper.getPayload().getCompany());
+
+        Order orderEntity = orderService.createOrder(eventWrapper);
+
+
+        Account accountEntity = accountService.createAccount(eventWrapper);
+
+
+        companyService.createCompany(eventWrapper);
 
         Subscription subscription = new Subscription();
-        creator.getUserSubscriptions().add(subscription);
-        log.info("Creating user ");
-        User userEntity = userService.createUser(creator);
-        subscription.setUser(userEntity);
-        userEntity.setAccount(accountEntity);
+        user.getUserSubscriptions().add(subscription);
+        orderEntity.setSubscription(subscription);
+        subscription.getOrders().add(orderEntity);
+        subscription.setUser(user);
 
-        log.info("Creating event ");
-        Event event = new Event();
-        event.setCompany(companyEntity);
-        event.setSubscriptionUser(userEntity);
-        event.setMarketplace(marketplace);
-        event.setApplicationUuid(eventWrapper.getApplicationUuid());
-        event.setCompany(eventWrapper.getPayload().getCompany());
-        event.setFlag(eventWrapper.getFlag());
-        event.setConfiguration(eventWrapper.getPayload().getConfiguration());
-        event.setOrder(orderEntity);
-
-        eventRepository.save(event);
+        eventService.createEvent(eventWrapper);
         log.info("Created account with account identifier {}", accountEntity.getAccountIdentifier());
         return Response.success(accountEntity.getAccountIdentifier());
     }
@@ -79,6 +71,10 @@ public class SubscriptionServiceImpl extends AbstractService implements Subscrip
     @Override
     public Response update(String eventUrl) {
         EventWrapper eventWrapper = loadEventData(eventUrl);
+        User creator = eventWrapper.getCreator();
+        User user = userService.findByOpenId(creator.getOpenId());
+        List<Subscription> subscriptions = user.getUserSubscriptions();
+
         return null;
     }
 
