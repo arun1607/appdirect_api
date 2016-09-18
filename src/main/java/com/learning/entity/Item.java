@@ -7,7 +7,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  * Created by amits on 13/09/16.
@@ -20,12 +22,16 @@ import javax.persistence.Embeddable;
         "unit",
         "quantity"
 })
-@Embeddable
-public class Item {
+@Table(name = "order_item")
+public class Item extends BaseEntity {
 
     @JsonProperty("unit")
     private String unit;
     @JsonProperty("quantity")
     private Integer quantity;
+
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
 
 }

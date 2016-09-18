@@ -7,9 +7,11 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by amits on 13/09/16.
@@ -22,7 +24,8 @@ import javax.persistence.Table;
         "editionCode",
         "addonOfferingCode",
         "pricingDuration",
-        "item"
+        "item",
+        "items"
 })
 @Entity
 @Table(name = "app_order")
@@ -34,8 +37,18 @@ public class Order extends BaseEntity {
     private String addonOfferingCode;
     @JsonProperty("pricingDuration")
     private PricingDuration pricingDuration;
-    @JsonProperty("item")
-    @Embedded
-    private Item item;
 
+    @OneToMany(mappedBy = "order")
+    private List<Item> items = new ArrayList<>();
+
+
+    @JsonProperty("item")
+    public void setItem(Item item) {    
+        this.items.add(item);
+    }
+
+    @JsonProperty("items")
+    public void setItems(List<Item> items) {
+        this.items.addAll(items);
+    }
 }
