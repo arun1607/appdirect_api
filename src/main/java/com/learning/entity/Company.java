@@ -15,7 +15,8 @@ import java.util.UUID;
 /**
  * Created by amits on 15/09/16.
  */
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonInclude(value= JsonInclude.Include.NON_EMPTY, content= JsonInclude.Include.NON_NULL)
+
 @Getter
 @Setter
 @ToString

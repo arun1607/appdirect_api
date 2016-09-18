@@ -12,4 +12,6 @@ public interface AccountService {
     Account createNewAccount();
 
     Account createAccount(EventWrapper eventWrapper);
+
+    void update(EventWrapper eventWrapper);
 }

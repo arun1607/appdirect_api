@@ -10,7 +10,8 @@ import javax.persistence.*;
 /**
  * Created by amits on 14/09/16.
  */
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonInclude(value= JsonInclude.Include.NON_EMPTY, content= JsonInclude.Include.NON_NULL)
+
 @Getter
 @Setter
 @Entity

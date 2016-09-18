@@ -3,6 +3,7 @@ package com.learning.service.impl;
 import com.learning.entity.Account;
 import com.learning.entity.AccountStatus;
 import com.learning.entity.User;
+import com.learning.exception.DataNotFoundException;
 import com.learning.exception.InvalidPayloadDataException;
 import com.learning.repository.AccountRepository;
 import com.learning.rest.EventWrapper;
@@ -63,5 +64,20 @@ public class AccountServiceImpl extends AbstractService implements AccountServic
     public Account createNewAccount() {
         Account account = new Account();
         return accountRepository.save(account);
+    }
+
+    @Override
+    @Transactional
+    public void update(EventWrapper eventWrapper) {
+        log.info("Updating Account ");
+        Payload payload = eventWrapper.getPayload();
+        if (Objects.isNull(payload)) {
+            throw new InvalidPayloadDataException("Payload can not be null");
+        }
+        Account account = payload.getAccount();
+        List<Account> existingAccount = accountRepository.findByAccountIdentifier(account.getAccountIdentifier());
+        if (Objects.isNull(existingAccount) || existingAccount.isEmpty())
+            throw new DataNotFoundException("No account is found with id " + account.getAccountIdentifier());
+        existingAccount.get(0).setStatus(account.getStatus());
     }
 }

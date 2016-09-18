@@ -16,7 +16,8 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @ToString
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonInclude(value= JsonInclude.Include.NON_EMPTY, content= JsonInclude.Include.NON_NULL)
+
 @Entity
 @Table(name = "app_marketplace")
 public class Marketplace extends BaseEntity {

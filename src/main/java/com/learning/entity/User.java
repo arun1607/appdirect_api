@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -14,11 +15,13 @@ import java.util.UUID;
 /**
  * Created by amits on 14/09/16.
  */
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonInclude(value= JsonInclude.Include.NON_EMPTY, content= JsonInclude.Include.NON_NULL)
+
 @Entity
 @Table(name = "app_user")
 @Getter
 @Setter
+@ToString
 public class User extends BaseEntity {
 
     private String uuid;

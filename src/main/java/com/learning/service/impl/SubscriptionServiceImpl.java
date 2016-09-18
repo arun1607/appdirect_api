@@ -58,6 +58,7 @@ public class SubscriptionServiceImpl extends AbstractService implements Subscrip
         companyService.createCompany(eventWrapper);
 
         Subscription subscription = new Subscription();
+        subscription.setStatus(SubscriptionStatus.ACTIVE);
         user.getUserSubscriptions().add(subscription);
         orderEntity.setSubscription(subscription);
         subscription.getOrders().add(orderEntity);
@@ -69,24 +70,37 @@ public class SubscriptionServiceImpl extends AbstractService implements Subscrip
     }
 
     @Override
+    @Transactional
     public Response update(String eventUrl) {
         EventWrapper eventWrapper = loadEventData(eventUrl);
         User creator = eventWrapper.getCreator();
         User user = userService.findByOpenId(creator.getOpenId());
+        Account account = user.getAccount();
         List<Subscription> subscriptions = user.getUserSubscriptions();
 
-        return null;
+        return Response.success(account.getAccountIdentifier());
     }
 
     @Override
     public Response cancel(String eventUrl) {
         EventWrapper eventWrapper = loadEventData(eventUrl);
-        return null;
+        User creator = eventWrapper.getCreator();
+        User user = userService.findByOpenId(creator.getOpenId());
+        Account account = user.getAccount();
+        List<Subscription> subscriptions = user.getUserSubscriptions();
+        subscriptions.forEach(subscription -> subscription.setStatus(SubscriptionStatus.CANCELLED));
+
+        return Response.success(account.getAccountIdentifier());
     }
 
     @Override
     public Response status(String eventUrl) {
         EventWrapper eventWrapper = loadEventData(eventUrl);
-        return null;
+        User creator = eventWrapper.getCreator();
+        User user = userService.findByOpenId(creator.getOpenId());
+        Account account = user.getAccount();
+        Account newAccount = eventWrapper.getPayload().getAccount();
+        accountService.update(eventWrapper);
+        return  Response.success(account.getAccountIdentifier());
     }
 }
