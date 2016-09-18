@@ -26,6 +26,7 @@ public abstract class AbstractService {
         try {
             String signedUrl = urlSigner.signUrl(eventUrl);
             String responseBody = eventDataService.fetchResponseBody(signedUrl);
+            log.info("Response body is {}", responseBody);
             EventWrapper eventWrapper = objectMapper.readValue(responseBody, EventWrapper.class);
             log.info("Received event data : {}", eventWrapper);
             return eventWrapper;
