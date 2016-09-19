@@ -28,7 +28,7 @@ public class GlobalExceptionHandler {
             UserHandlingException.class})
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public Response handleDataExistsException(DataExistsException ex) {
+    public Response handleDataExistsException(BaseException ex) {
         log.error("Error occurred", ex);
         return Response.failure(ex.getResponseErrorCode(), ex.getMessage());
     }
